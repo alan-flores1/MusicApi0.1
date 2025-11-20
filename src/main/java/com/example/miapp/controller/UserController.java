@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*") // Permite peticiones desde frontend
+@CrossOrigin(origins = "https://music-online-lilac.vercel.app/?fbclid=PAVERFWAOL_TRleHRuA2FlbQIxMABzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaenhgJRKqHt92HT9OwtLV1DHc1476luFtMj1bzDzQfLF0H0rcuGptnkcmm9EA_aem_kbBO9zk90Dc1L5FtDFsu8g") // Permite peticiones desde frontend
 public class UserController {
 
     private final UserRepository userRepository;

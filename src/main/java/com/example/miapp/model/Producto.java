@@ -3,14 +3,14 @@ package com.example.miapp.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity // Esta clase se convierte en tabla
-@Data // Lombok genera getters/setters/toString/etc.
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor con todos los campos
+@Entity
+@Data 
+@NoArgsConstructor 
+@AllArgsConstructor 
 public class Producto {
 
-    @Id // Clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incrementa el id
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     private String nombre; 
@@ -18,7 +18,14 @@ public class Producto {
     private String descripcion;
 
     @Enumerated(EnumType.STRING)
-    private Categoria categoria;
+
+    private categoria categoria;  
+    
+    public enum categoria {
+        CDS,
+        VINILO,
+        ACCESORIOS
+    };
     
 }
 

@@ -7,24 +7,18 @@ import lombok.*;
 @Data 
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "detalle_producto")
 
-public class User {
+public class detalleProducto {
     
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
-    private String nombre_user; 
-    private String contrasenia;
-
-    @Enumerated(EnumType.STRING)
-    private Rol rol;    
-
-    public enum Rol {
-    ADMIN,
-    CLIENTE
-    }
+    private String nombreProducto;
+    private Double precio;
+    private String descripcionProducto;
+    private String imagenUrl;
 
 }
 
