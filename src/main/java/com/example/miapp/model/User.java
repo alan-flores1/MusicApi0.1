@@ -15,8 +15,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
-    private String nombre_user; 
-    private String contrasenia;
+    private String Nombre_user; 
+
+    private String Correo;
+
+    private String Contrasenia;
+
+    private String Region;
+    
+    private String Comuna;
 
     @Enumerated(EnumType.STRING)
     private Rol rol;    

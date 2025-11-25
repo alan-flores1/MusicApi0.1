@@ -19,9 +19,9 @@ public class Producto {
 
     @Enumerated(EnumType.STRING)
 
-    private categoria categoria;  
+    private Categoria categoria;  
     
-    public enum categoria {
+    public enum Categoria {
         CDS,
         VINILO,
         ACCESORIOS

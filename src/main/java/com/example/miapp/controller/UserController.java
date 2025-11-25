@@ -7,10 +7,12 @@ import com.example.miapp.model.User;
 import com.example.miapp.repository.UserRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "https://music-online-lilac.vercel.app/?fbclid=PAVERFWAOL_TRleHRuA2FlbQIxMABzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaenhgJRKqHt92HT9OwtLV1DHc1476luFtMj1bzDzQfLF0H0rcuGptnkcmm9EA_aem_kbBO9zk90Dc1L5FtDFsu8g") // Permite peticiones desde frontend
+@CrossOrigin(origins = "https://music-online-lilac.vercel.app/?fbclid=PAVERFWAOL_TRleHRuA2FlbQIxMABzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaenhgJRKqHt92HT9OwtLV1DHc1476luFtMj1bzDzQfLF0H0rcuGptnkcmm9EA_aem_kbBO9zk90Dc1L5FtDFsu8g")
+@Tag(name = "Usuarios", description = "CRUD de usuarios del sistema")
 public class UserController {
 
     private final UserRepository userRepository;
@@ -19,30 +21,27 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    // Obtener todos los libros
     @GetMapping
+    @Operation(summary = "Obtener todos los usuarios", description = "Retorna una lista con todos los usuarios registrados en la base de datos.")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    // Obtener libro por ID
     @GetMapping("/{id}")
-    @Operation(summary = "Obtener un usuario por su ID", description = "Devuelve un usuario especifico por su ID")
+    @Operation(summary = "Obtener usuario por ID", description = "Devuelve un usuario específico buscando por su ID.")
     public User getUserById(@PathVariable Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    // Crear un nuevo libro
     @PostMapping
-    @Operation(summary = "Se crea un nuevo usuario", description = "Crea un nuevo usuario solicitando un body.json")
+    @Operation(summary = "Crear un nuevo usuario", description = "Crea un nuevo usuario recibiendo un JSON con sus datos.")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
-    // Actualizar libro existente
     @PutMapping("/{id}")
-    @Operation(summary = "Actualiza los datos del usuario", description = "Se actualiza el usuario")
+    @Operation(summary = "Actualizar usuario", description = "Actualiza el nombre y contraseña del usuario existente.")
     public User updateUser(@PathVariable Long id, @RequestBody User bookDetails) {
         User book = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -52,9 +51,8 @@ public class UserController {
         return userRepository.save(book);
     }
 
-    // Eliminar libro
     @DeleteMapping("/{id}")
-    @Operation(summary = "Borrar el usuario por su ID", description = "Se elimina el usuario solicitando su ID")
+    @Operation(summary = "Eliminar usuario", description = "Elimina un usuario de la base de datos usando su ID.")
     public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
     }
