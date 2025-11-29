@@ -4,28 +4,27 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data 
-@NoArgsConstructor 
-@AllArgsConstructor 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Producto {
 
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre; 
-    private Double precio; 
+    private String nombre;
+    private Double precio;
     private String descripcion;
-
+    private String imagenUrl;
     @Enumerated(EnumType.STRING)
 
-    private Categoria categoria;  
-    
+    private Categoria categoria;
+
     public enum Categoria {
         CDS,
         VINILO,
         ACCESORIOS
     };
-    
-}
 
+}

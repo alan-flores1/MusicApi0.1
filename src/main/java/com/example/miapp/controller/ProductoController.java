@@ -51,7 +51,9 @@ public class ProductoController {
                     existente.setNombre(prodDetails.getNombre());
                     existente.setPrecio(prodDetails.getPrecio());
                     existente.setDescripcion(prodDetails.getDescripcion());
-                    existente.setCategoria(prodDetails.getCategoria());
+                    existente.setImagenUrl(prodDetails.getImagenUrl());
+                    existente.setCategoria(prodDetails.getCategoria()); // ahora usa el enum
+
                     Producto actualizado = prodRepository.save(existente);
                     return ResponseEntity.ok(actualizado);
                 })
