@@ -17,7 +17,8 @@ public class CorsConfig {
                         .allowedOrigins(
                             "https://musicapi01-production.up.railway.app", // Tu frontend en CodeSandbox
                             "http://localhost:3000" ,
-                            "https://t646mk-3000.csb.app"       // Para pruebas locales
+                            "https://t646mk-3000.csb.app",
+                            "https://lydjk4-3000.csb.app"       // Para pruebas locales
                         )
                         .allowedMethods("*")
                         .allowedHeaders("*")
