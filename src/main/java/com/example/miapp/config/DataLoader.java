@@ -20,7 +20,7 @@ public class DataLoader {
                                 userRepository.save(new User(
                                                 null,
                                                 "Admin",
-                                                "admin@mail.com",
+                                                "admin@gmail.com",
                                                 "1234",
                                                 "RM",
                                                 "Santiago",
@@ -29,7 +29,7 @@ public class DataLoader {
                                 userRepository.save(new User(
                                                 null,
                                                 "Cliente 1",
-                                                "cliente1@mail.com",
+                                                "cliente1@duoc.cl",
                                                 "1234",
                                                 "RM",
                                                 "Puente Alto",
@@ -38,7 +38,7 @@ public class DataLoader {
                                 userRepository.save(new User(
                                                 null,
                                                 "Cliente 2",
-                                                "cliente2@mail.com",
+                                                "cliente2@duocuc.cl",
                                                 "1234",
                                                 "Valparaiso",
                                                 "Viña",
