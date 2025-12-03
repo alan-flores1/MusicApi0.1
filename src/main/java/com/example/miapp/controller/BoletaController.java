@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/boletas")
-@CrossOrigin(origins = "*")
 @Tag(name = "Boletas / Pagos", description = "Operaciones para registrar y consultar pagos y boletas")
 public class BoletaController {
 

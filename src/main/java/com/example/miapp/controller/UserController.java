@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "https://music-online-lilac.vercel.app/?fbclid=PAVERFWAOL_TRleHRuA2FlbQIxMABzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaenhgJRKqHt92HT9OwtLV1DHc1476luFtMj1bzDzQfLF0H0rcuGptnkcmm9EA_aem_kbBO9zk90Dc1L5FtDFsu8g")
 @Tag(name = "Usuarios", description = "CRUD de usuarios del sistema")
 public class UserController {
 
