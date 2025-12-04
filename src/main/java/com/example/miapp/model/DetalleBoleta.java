@@ -18,6 +18,7 @@ public class DetalleBoleta {
 
     @ManyToOne
     @JoinColumn(name = "boleta_id")
+    @JsonBackReference
     private Boleta boleta;
 
     @ManyToOne

@@ -25,5 +25,6 @@ public class Boleta {
     private Double total;
 
     @OneToMany(mappedBy = "boleta", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<DetalleBoleta> detalles;
 }
