@@ -3,6 +3,7 @@ package com.example.miapp.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,11 +20,10 @@ public class Boleta {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "carrito_id")
-    private Carrito carrito;
-
     private LocalDateTime fechaCompra;
 
     private Double total;
+
+    @OneToMany(mappedBy = "boleta", cascade = CascadeType.ALL)
+    private List<DetalleBoleta> detalles;
 }
