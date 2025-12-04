@@ -37,18 +37,24 @@ public class CarritoController {
         return ResponseEntity.ok(carritoRepository.findAll());
     }
 
-    @PostMapping("/crear/{userId}")
-    @Operation(summary = "Crear carrito", description = "Crea un carrito nuevo asociado a un usuario.")
+   @PostMapping("/crear/{userId}")
     public ResponseEntity<Carrito> crearCarrito(@PathVariable Long userId) {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // verificar si ya tiene carrito
+        Carrito existente = carritoRepository.findByUser(user);
+        if (existente != null) {
+            return ResponseEntity.ok(existente);
+        }
 
         Carrito carrito = new Carrito();
         carrito.setUser(user);
 
         return ResponseEntity.ok(carritoRepository.save(carrito));
     }
+
 
     @PostMapping("/{carritoId}/agregar/{productoId}")
     @Operation(summary = "Agregar producto", description = "Agrega un producto al carrito.")
