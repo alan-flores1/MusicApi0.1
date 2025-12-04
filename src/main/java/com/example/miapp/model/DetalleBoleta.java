@@ -1,7 +1,7 @@
 package com.example.miapp.model;
 
 import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 @Entity
