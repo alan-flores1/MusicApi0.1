@@ -1,6 +1,7 @@
 package com.example.miapp.model;
 
 import jakarta.persistence.*;
+
 import lombok.*;
 
 @Entity
@@ -8,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "detalle_boleta")
+
 public class DetalleBoleta {
 
     @Id
