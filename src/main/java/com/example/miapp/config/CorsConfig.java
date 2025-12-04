@@ -15,10 +15,11 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
-                            "https://musicapi01-production.up.railway.app", // Tu frontend en CodeSandbox
+                            "https://musicapi01-production.up.railway.app", 
                             "http://localhost:3000" ,
                             "https://t646mk-3000.csb.app",
-                            "https://lydjk4-3000.csb.app"       // Para pruebas locales
+                            "https://lydjk4-3000.csb.app",
+                            "https://music-online-lilac.vercel.app"  
                         )
                         .allowedMethods("*")
                         .allowedHeaders("*")
