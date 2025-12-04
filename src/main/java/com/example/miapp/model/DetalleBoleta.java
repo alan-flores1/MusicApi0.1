@@ -1,7 +1,6 @@
 package com.example.miapp.model;
 
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 @Entity
@@ -18,7 +17,7 @@ public class DetalleBoleta {
 
     @ManyToOne
     @JoinColumn(name = "boleta_id")
-    @JsonBackReference
+    @JsonIgnore
     private Boleta boleta;
 
     @ManyToOne

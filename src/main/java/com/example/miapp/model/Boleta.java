@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -27,6 +26,5 @@ public class Boleta {
     private Double total;
 
     @OneToMany(mappedBy = "boleta", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<DetalleBoleta> detalles;
 }
