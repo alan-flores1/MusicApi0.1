@@ -37,7 +37,7 @@ public class CarritoController {
         return ResponseEntity.ok(carritoRepository.findAll());
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping("/crear/{userId}")
     @Operation(summary = "Crear carrito", description = "Crea un carrito nuevo asociado a un usuario.")
     public ResponseEntity<Carrito> crearCarrito(@PathVariable Long userId) {
 
