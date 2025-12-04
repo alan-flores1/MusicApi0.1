@@ -3,6 +3,8 @@ package com.example.miapp.model;
 import jakarta.persistence.*;
 import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Data
@@ -18,7 +20,7 @@ public class DetalleBoleta {
 
     @ManyToOne
     @JoinColumn(name = "boleta_id")
-    @JsonIgnoreProperties("detalles")
+    @JsonIgnore
     private Boleta boleta;
 
     @ManyToOne
