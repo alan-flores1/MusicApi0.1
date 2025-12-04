@@ -15,7 +15,6 @@ public class Boleta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Usuario CLIENTE
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

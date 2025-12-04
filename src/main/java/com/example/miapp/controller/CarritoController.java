@@ -25,15 +25,20 @@ public class CarritoController {
     private final ProductoRepository prodRepository;
 
     public CarritoController(CarritoRepository carritoRepository,
-            UserRepository userRepository,
-            ProductoRepository prodRepository) {
+                             UserRepository userRepository,
+                             ProductoRepository prodRepository) {
         this.carritoRepository = carritoRepository;
         this.userRepository = userRepository;
         this.prodRepository = prodRepository;
     }
+    @GetMapping
+    @Operation(summary = "Listar todos los carritos", description = "Retorna todos los carritos existentes (solo uso administrativo).")
+    public ResponseEntity<List<Carrito>> getAll() {
+        return ResponseEntity.ok(carritoRepository.findAll());
+    }
 
-    @PostMapping("/crear/{userId}")
-    @Operation(summary = "Crear carrito", description = "Crea un carrito nuevo asociado a un usuario existente usando su ID.")
+    @PostMapping("/{userId}")
+    @Operation(summary = "Crear carrito", description = "Crea un carrito nuevo asociado a un usuario.")
     public ResponseEntity<Carrito> crearCarrito(@PathVariable Long userId) {
 
         User user = userRepository.findById(userId)
@@ -46,7 +51,7 @@ public class CarritoController {
     }
 
     @PostMapping("/{carritoId}/agregar/{productoId}")
-    @Operation(summary = "Agregar producto al carrito", description = "Agrega un producto al carrito indicando el ID del carrito y el ID del producto.")
+    @Operation(summary = "Agregar producto", description = "Agrega un producto al carrito.")
     public ResponseEntity<Carrito> agregarProducto(
             @PathVariable Long carritoId,
             @PathVariable Long productoId) {
@@ -63,7 +68,7 @@ public class CarritoController {
     }
 
     @GetMapping("/{carritoId}")
-    @Operation(summary = "Obtener productos del carrito", description = "Retorna todos los productos que están actualmente en el carrito indicado.")
+    @Operation(summary = "Ver carrito", description = "Obtiene los productos del carrito por ID.")
     public ResponseEntity<List<Producto>> verProductos(@PathVariable Long carritoId) {
 
         Carrito carrito = carritoRepository.findById(carritoId)
@@ -73,7 +78,7 @@ public class CarritoController {
     }
 
     @DeleteMapping("/{carritoId}/vaciar")
-    @Operation(summary = "Vaciar carrito", description = "Elimina todos los productos del carrito sin borrar el carrito.")
+    @Operation(summary = "Vaciar carrito", description = "Elimina todos los productos del carrito.")
     public ResponseEntity<Void> vaciarCarrito(@PathVariable Long carritoId) {
 
         Carrito carrito = carritoRepository.findById(carritoId)
