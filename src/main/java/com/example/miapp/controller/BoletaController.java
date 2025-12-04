@@ -3,8 +3,10 @@ package com.example.miapp.controller;
 import com.example.miapp.model.*;
 import com.example.miapp.repository.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -12,18 +14,15 @@ import java.util.List;
 public class BoletaController {
 
     private final BoletaRepository boletaRepo;
-    private final DetalleBoletaRepository detalleRepo;
     private final ProductoRepository productoRepo;
     private final UserRepository userRepo;
 
     public BoletaController(
             BoletaRepository boletaRepo,
-            DetalleBoletaRepository detalleRepo,
             ProductoRepository productoRepo,
             UserRepository userRepo
     ) {
         this.boletaRepo = boletaRepo;
-        this.detalleRepo = detalleRepo;
         this.productoRepo = productoRepo;
         this.userRepo = userRepo;
     }
@@ -33,6 +32,7 @@ public class BoletaController {
         return boletaRepo.findAll();
     }
 
+    @Transactional
     @PostMapping("/crear/{userId}")
     public Boleta crearBoleta(@PathVariable Long userId, @RequestBody List<DetalleRequest> items) {
 
@@ -42,8 +42,7 @@ public class BoletaController {
         Boleta boleta = new Boleta();
         boleta.setUser(user);
         boleta.setFechaCompra(LocalDateTime.now());
-
-        boleta = boletaRepo.save(boleta);
+        boleta.setDetalles(new ArrayList<>()); 
 
         double total = 0;
 
@@ -51,39 +50,27 @@ public class BoletaController {
             Producto producto = productoRepo.findById(req.getProductoId())
                     .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-            DetalleBoleta det = new DetalleBoleta();
-            det.setBoleta(boleta);
-            det.setProducto(producto);
-            det.setCantidad(req.getCantidad());
-            det.setSubtotal(producto.getPrecio() * req.getCantidad());
+            DetalleBoleta detalle = new DetalleBoleta();
+            detalle.setBoleta(boleta);
+            detalle.setProducto(producto);
+            detalle.setCantidad(req.getCantidad());
+            detalle.setSubtotal(producto.getPrecio() * req.getCantidad());
 
-            total += det.getSubtotal();
-
-            detalleRepo.save(det);
+            boleta.getDetalles().add(detalle);
+            total += detalle.getSubtotal();
         }
 
         boleta.setTotal(total);
-        return boletaRepo.save(boleta);
+        return boletaRepo.save(boleta); 
     }
 
     public static class DetalleRequest {
-    private Long productoId;
-    private int cantidad;
+        private Long productoId;
+        private int cantidad;
 
-    public Long getProductoId() {
-        return productoId;
+        public Long getProductoId() { return productoId; }
+        public void setProductoId(Long productoId) { this.productoId = productoId; }
+        public int getCantidad() { return cantidad; }
+        public void setCantidad(int cantidad) { this.cantidad = cantidad; }
     }
-
-    public void setProductoId(Long productoId) {
-        this.productoId = productoId;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-}
 }
