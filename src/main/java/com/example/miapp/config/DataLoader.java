@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DataLoader {
-
+//???
         @Bean
         CommandLineRunner loadData(ProductoRepository productoRepository, UserRepository userRepository) {
                 return args -> {
